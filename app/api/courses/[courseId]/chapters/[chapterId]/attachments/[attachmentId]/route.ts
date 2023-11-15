@@ -3,7 +3,7 @@ import { auth } from '@clerk/nextjs';
 import { NextResponse } from 'next/server';
 import { UTApi } from 'uploadthing/server';
 
-export const utapi = new UTApi();
+// export const utapi = new UTApi(); we cannot used export it cause type error; check if this still working after changed
 
 export async function DELETE(
   req: Request,
@@ -12,6 +12,7 @@ export async function DELETE(
   }: { params: { courseId: string; chapterId: string; attachmentId: string } }
 ) {
   try {
+    const utapi = new UTApi();
     const { userId } = auth();
 
     if (!userId) {
